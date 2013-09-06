@@ -1,99 +1,17 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
-<style>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Purchase Funnel</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+  <body>
 
-body {
-  font: 10px sans-serif;
-}
+    <div id='purchaseFunnel'></div>
 
-#rects {
-  width:600px;
-  height: 600px;
-  margin:100px auto;
-}
-
-</style>
-<body>
-
-
-<div id="rects"></div>
-
-
-<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script src="http://d3js.org/d3.v3.js"></script>
-<script>
-  
-var svg = d3.select("#rects")
-  .append("svg")
-  .attr("width", 600)
-  .attr("height", 500);
-
-svg.append("clipPath")
-  .attr("id", "funnel")
-  .append("path")
-  .attr("fill", "none")
-  .attr("stroke", "red")
-  .attr('d', function(d) { 
-    var x = 0, y = 0;
-    return 'M ' + x +' '+ y + '  l 600 0 l -300 500';
-  });
-
-svg.append("rect")
-  .attr("id", "awareness")
-  .attr("class", "funnelBar")
-  .attr("x", 0)
-  .attr("y", 0)
-  .attr("height", 100)
-  .attr("width", 600)
-  .style("fill", "#ccc")
-  .attr("clip-path", "url(#funnel)");
-
-svg.append("rect")
-  .attr("id", "familiarity")
-  .attr("x", 0)
-  .attr("y", 100)
-  .attr("height", 100)
-  .attr("width", 600)
-  .style("fill", "#000")
-  .attr("clip-path", "url(#funnel)");
-
-svg.append("rect")
-  .attr("id", "consideration")
-  .attr("class", "funnelBar")
-  .attr("x", 0)
-  .attr("y", 200)
-  .attr("height", 100)
-  .attr("width", 600)
-  .style("fill", "#333")
-  .attr("clip-path", "url(#funnel)");
-
-svg.append("rect")
-  .attr("id", "preference")
-  .attr("class", "funnelBar")
-  .attr("x", 0)
-  .attr("y", 300)
-  .attr("height", 100)
-  .attr("width", 600)
-  .style("fill", "#999")
-  .attr("clip-path", "url(#funnel)");
-
-svg.append("rect")
-  .attr("id", "purchaseIntent")
-  .attr("class", "funnelBar")
-  .attr("x", 0)
-  .attr("y", 400)
-  .attr("height", 100)
-  .attr("width", 600)
-  .style("fill", "#666")
-  .attr("clip-path", "url(#funnel)");
-
-
-
-  // Dimensions 
-  var funnelBarArr = ['#awareness', '#familiarity', '#consideration', '#preference', '#purchaseIntent'],
-
-
-
-</script>
-</body>
-  </html>
+    <script src='http://code.jquery.com/jquery-1.10.1.min.js'></script>
+    <script src='http://d3js.org/d3.v3.js'></script>
+    <script src='funnel.js'></script>
+    
+  </body>
+</html>
