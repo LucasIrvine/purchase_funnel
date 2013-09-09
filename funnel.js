@@ -15,7 +15,6 @@
     .attr('id', 'funnel')
     .append('path')
     .attr('fill', 'none')
-    .attr('stroke', 'red')
     .attr('d', function(d){
       var x = 0, y = 0;
       return 'M ' + x +' '+ y + '  l 600 0 l -300 500';
@@ -34,7 +33,7 @@
   svg.append('rect')
     .attr('id', barArr[1])
     .attr('x', barX)
-    .attr('y', 100)
+    .attr('y', 102)
     .attr('height', 100)
     .attr('width', barW)
     .style('fill', function(){return '#999';})
@@ -44,7 +43,7 @@
     .attr('id', barArr[2])
     .attr('class', barClass)
     .attr('x', barX)
-    .attr('y', 200)
+    .attr('y', 204)
     .attr('height', 100)
     .attr('width', barW)
     .style('fill', function(){return '#666';})
@@ -54,7 +53,7 @@
     .attr('id', barArr[3])
     .attr('class', barClass)
     .attr('x', barX)
-    .attr('y', 300)
+    .attr('y', 306)
     .attr('height', 100)
     .attr('width', barW)
     .style('fill', function(){return '#333';})
@@ -64,7 +63,7 @@
     .attr('id', barArr[4])
     .attr('class', barClass)
     .attr('x', barX)
-    .attr('y', 400)
+    .attr('y', 408)
     .attr('height', 100)
     .attr('width', barW)
     .style('fill', function(){return '#000';})
