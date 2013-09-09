@@ -1,6 +1,42 @@
-{	"awareness" : 175,
-	"familiarity" :115,
-	"consideration ":85, 
-	"preference" :90, 
-	"purchaseIntent" :35
-}
+{"funnel" : [
+	{
+		"height" : 135,
+		"top" : 0, 
+		"info" : {
+			"title" : "Awareness",
+			"copy" : "Adipisicing elit. Distinctio, earum, totam, incidunt laudantium ullam veritatis odio dolorum commodi tenetur vero velit animi rerum. Fugit, minus, doloribus vel accusamus laborum hic."
+		}
+	},
+	{
+		"height" : 155,
+		"top" : 135, 
+		"info" : {
+			"title" : "Familiarity",
+			"copy" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, earum, totam, incidunt laudantium ullam veritatis odio dolorum commodi tenetur vero velit animi rerum. Fugit, minus, doloribus vel accusamus laborum hic."
+		}
+	},
+	{
+		"height" : 85,
+		"top" : 290, 
+		"info" : {
+			"title" : "Considertaion",
+			"copy" : "Earum, totam, incidunt laudantium ullam veritatis odio dolorum commodi tenetur vero velit animi rerum. Fugit, minus, doloribus vel accusamus laborum hic."
+		}
+	}, 
+	{
+		"height" : 70,
+		"top" : 375, 
+		"info" : {
+			"title" : "Preference",
+			"copy" : "Sit amet, consectetur adipisicing elit. Distinctio, earum, totam, incidunt laudantium ullam veritatis odio dolorum commodi tenetur vero velit animi rerum. Fugit, minus, doloribus vel accusamus laborum hic."
+		}
+	}, 
+	{
+		"height" : 55,
+		"top" : 445, 
+		"info" : {
+			"title" : "Purchase Intent",
+			"copy" : "Allam veritatis odio dolorum commodi tenetur vero velit animi rerum. Fugit, minus, doloribus vel accusamus laborum hic."
+		}
+	}
+]}
