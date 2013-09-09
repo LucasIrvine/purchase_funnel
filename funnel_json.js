@@ -1,6 +1,6 @@
  var barArr = ['awareness', 'familiarity', 'consideration', 'preference', 'purchaseIntent'],
   barClass = 'funnelBar',
-  width = 700,
+  width = 1000,
   height = 500,
   barX = 0,
   barW = 700,
@@ -151,18 +151,31 @@ var blockSummary = function(json){
     .data(json)
     .enter()
     .append('svg:text')
-    .attr('class', 'summaryTitle')
-    .style('fill', '#000')
+    .attr('class', 'infoHeading')
    .attr('x', function(d,i){
-      return 600 - (i * 50);
+      return 650 - (i * 58);
     })
     .attr('y', function(d,i){
-      return d.top - 10;
+      return d.top + 20;
     })
-    .attr("dx", 0)
-    .attr("dy", "1.5em")
+    .style('font-size', '1.1em')
     .attr("text-anchor", "left")
     .text(function(d,i){ return d.info.title + ' - ' + d.height / 5 + '%'; });
+
+     svg.selectAll('.infoCopy')
+      .data(json)
+      .enter()
+      .append('svg:text')
+      .style('font-size', '0.9em')
+      .attr('class', 'infoCopy')
+      .attr('x', function(d,i){
+        return 650 - (i * 58);
+      })
+      .attr('y', function(d,i){
+        return d.top + 40;
+      })
+      .attr("text-anchor", "left")
+      .text(function(d,i){ return d.info.copy; });
 
 
   
