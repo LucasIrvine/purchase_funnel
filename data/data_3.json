@@ -1,0 +1,42 @@
+{"funnel" : [
+	{
+		"count" : 2152,
+		
+		"info" : {
+			"title" : "Awareness",
+			"copy" : "Adipisicing elit. Distinctio, earum, totam, incidunt laudantium ullam veritatis odio dolorum commodi tenetur vero velit animi rerum. Fugit, minus, doloribus vel accusamus laborum hic."
+		}
+	},
+	{
+		"count" : 1162,
+		
+		"info" : {
+			"title" : "Familiarity",
+			"copy" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, earum, totam, incidunt laudantium ullam veritatis odio dolorum commodi tenetur vero velit animi rerum. Fugit, minus, doloribus vel accusamus laborum hic."
+		}
+	},
+	{
+		"count" : 1845,
+		
+		"info" : {
+			"title" : "Considertaion",
+			"copy" : "Earum, totam, incidunt laudantium ullam veritatis odio dolorum commodi tenetur vero velit animi rerum. Fugit, minus, doloribus vel accusamus laborum hic."
+		}
+	}, 
+	{
+		"count" : 1412,
+		
+		"info" : {
+			"title" : "Preference",
+			"copy" : "Sit amet, consectetur adipisicing elit. Distinctio, earum, totam, incidunt laudantium ullam veritatis odio dolorum commodi tenetur vero velit animi rerum. Fugit, minus, doloribus vel accusamus laborum hic."
+		}
+	}, 
+	{
+		"count" : 2584,
+		
+		"info" : {
+			"title" : "Purchase Intent",
+			"copy" : "Allam veritatis odio dolorum commodi tenetur vero velit animi rerum. Fugit, minus, doloribus vel accusamus laborum hic."
+		}
+	}
+]}

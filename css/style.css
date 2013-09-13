@@ -4,6 +4,7 @@ html, body {
 	margin: 0;
 }
 #funnelHolder {
+	position: relative;
 	margin: 50px;
 	width: 1000px;
 	height: 550px;
@@ -27,5 +28,10 @@ html, body {
 	height: auto;
 	border: 1px solid red;
 	padding-top: 30px;
-	left: 650px;
+	left: 600px;
+}
+button {
+	position: absolute;
+	left: 50px;
+	bottom: 50px;
 }
