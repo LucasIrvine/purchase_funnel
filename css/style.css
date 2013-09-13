@@ -2,13 +2,30 @@ html, body {
 	font-family: helvetica, arial;
 	padding: 0;
 	margin: 0;
+	color: #333;
+}
+h4 {
+	font-size: 1.5em;
+	margin:0.50em;
+	padding:0;
+}
+h5 {
+	font-size: 1.2em;
+	margin:0.50em;
+	padding:0;
+}
+p {
+	font-size: 1em;
+	margin:0.50em;
+	padding:0;
+	color: #666;
+	line-height: 1.5em;
 }
 #funnelHolder {
 	position: relative;
 	margin: 50px;
 	width: 1000px;
 	height: 550px;
-	border: 1px solid #ccc;
 	border-radius: 1em;
 }
 #purchaseFunnel {
@@ -17,7 +34,6 @@ html, body {
 	margin: 30px 0 0 15px;
 	float: left;
 }
-
 #sliderWrap {
 	width: 55%;
 	margin-left: 40px;
@@ -26,12 +42,14 @@ html, body {
 	position: absolute;
 	width: 360px;
 	height: auto;
-	border: 1px solid red;
-	padding-top: 30px;
-	left: 600px;
+	top: 120px;
+	left: 550px;
 }
-button {
+.changeData {
 	position: absolute;
 	left: 50px;
 	bottom: 50px;
+}
+.infoDiv {
+	display: none;
 }

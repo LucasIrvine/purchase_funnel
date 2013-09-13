@@ -14,7 +14,7 @@ var drawFunnel = function(jsonFile){
   newCountSum = [0],
   countSummer = 0;
 
-  //Create board
+//Create board
   var svg = d3.select('#purchaseFunnel')
     .append('svg')
     .attr({
@@ -22,7 +22,7 @@ var drawFunnel = function(jsonFile){
       'height' : height
     });
 
-  //Create clipping path
+//Create clipping path
   svg.append('clipPath')
     .attr('id', 'funnel')
     .append('path')
@@ -31,209 +31,175 @@ var drawFunnel = function(jsonFile){
          'd' : function(d){
                 var x = 50, y = 0;
                 return 'M ' + x +' '+ y + '  l 500 0 l -250 400';
-              }
+               }
   });
 
 //Grab JSON
   d3.json('data/'+ jsonFile +'.json', function(data){
 
-  //Find largest section
-      for (var i = data.funnel.length - 1; i >= 0; i--) {
-        maxArray.push(data.funnel[i].count);
-        arraySum += data.funnel[i].count;
-      }
-      var largestSection = Math.max.apply(null, maxArray);
+  function showInfo(id){
+    $('.'+id).fadeIn(200);
+    console.log($('.'+id));
+  }
 
 
+//Find largest section
+    for (var i = data.funnel.length - 1; i >= 0; i--){
+      maxArray.push(data.funnel[i].count);
+      arraySum += data.funnel[i].count;
+    }
+    var largestSection = Math.max.apply(null, maxArray);
   //Scale
-      var yScale = d3.scale.linear()
-        .domain([0, arraySum])
-        .range([0, height]);
+    var yScale = d3.scale.linear()
+      .domain([0, arraySum])
+      .range([0, height]);
 
-      for(var r=0; r < data.funnel.length; r++){
-          var scaled = countSummer += yScale(data.funnel[r].count);
-          newCountSum.push(scaled);
-        }
-
+    for(var r=0; r < data.funnel.length; r++){
+      var scaled = countSummer += yScale(data.funnel[r].count);
+      newCountSum.push(scaled);
+    }
   //Label lines
-      svg.selectAll('line')
-      .data(data.funnel)
-      .enter()
-        .append('svg:line')
-        .attr({
-          'stroke-width': 2,
-          'stroke' : function(d,i){return funnelColor.darker((i / 1.5));},
-          "x1" : function(d,i){ return 40;},
-          "y1" : function(d,i){ return Math.round(newCountSum[i] + 18);},
-          "x2" : function(d,i){ return 40;},
-          "y2" : function(d,i){ return Math.round(newCountSum[i] + 18);}
-        })
-        .style('opacity', 0)
-        .transition()
-        .delay(330)
-        .duration(450)
-        .attr("x2", 300)
-        .style('opacity', 1);
-
-
-  // draw funnel with no height values
-      svg.selectAll('rect')
-        .data(data.funnel)
-        .enter()
-          .append('svg:rect')
-          .attr({
-            'id' : function(d,i){
-                    return barArr[i];
-                   },
-            'class' : barClass,
-            'x' : barX,
-            'y' : '0',
-            'height' : '100',
-            'width' : barW
-          })
-          .style({
-            'fill' : funnelColor,
-            'stroke' : 'white',
-            'stroke-width' : '2px',
-            'opacity' : 0.3
-          })
-          .transition()
-          .attr({
-            'clip-path' : 'url('+clipper+')',
-            'y' : function(d,i){
-                    return i * 100;
-                  }
-          });
-
-  //Transition in height values and find the largest group
-      svg.selectAll('.' + barClass)
-        .data(data.funnel)
-          .on('mouseover', function(){
-            origColor = d3.select(this).style("fill");
-            d3.select(this).style("fill", niOrange);
-          })
-          .on('mouseout', function(){
-             d3.select(this).style("fill", origColor);
-          })
-        .transition()
-        .duration(300)
-        .delay(300)
-          .attr({
-          'height' : function(d,i){
-            return yScale(d.count);
-          },
-          'y': function(d,i){
-            return newCountSum[i];
-           }
-        })
-        .style({
-          'fill' : function(d,i){
-                    return funnelColor.darker((i / 1.5));
-                  },
-          'stroke' : 'white',
-          'stroke-width' : '2px',
-          'opacity' : 1
-        });
-
-  //Percentage labels
-      svg.selectAll('text')
-      .data(data.funnel)
-      .enter()
-        .append('svg:text')
-        .style({
-          'opacity' : 0,
-          'fill' : function(d,i){
-            return funnelColor.darker((i / 1.5));
-          }
-        })
-        .transition()
-        .delay(330)
-        .duration(500)
-        .attr({
-          'x' : function(d,i){
-            return 20;
-          },
-          'y' : function(d,i){
-            return Math.round(newCountSum[i]);
-          },
-          "dx" : 0,
-          "dy" : "1.5em",
-          "text-anchor" : "middle",
-          "class" : "percentLabels"
-        })
-        .text(function(d,i){ return Math.round(yScale(data.funnel[i].count) / 5) + '%'; })
-        .style('opacity', 1);
-      
-  
-var infoBox = d3.select('#infoBox');
-    infoBox.selectAll('div')
+    svg.selectAll('line')
     .data(data.funnel)
     .enter()
-      .append('div')
-      .attr('id', function(d,i){
-        return 'infoDiv' + i;
+      .append('svg:line')
+      .attr({
+        'stroke-width': 2,
+        'stroke' : function(d,i){return funnelColor.darker((i / 1.5));},
+        "x1" : function(d,i){ return 40;},
+        "y1" : function(d,i){ return Math.round(newCountSum[i] + 18);},
+        "x2" : function(d,i){ return 40;},
+        "y2" : function(d,i){ return Math.round(newCountSum[i] + 18);}
       })
-      .html(function(d,i){
-        return '<h4>'+d.info.title+' -'+Math.round(yScale(data.funnel[i].count) / 5) + '%'+'</h4><p>'+d.info.copy+'</p>';
+      .style('opacity', 0)
+      .transition()
+      .delay(330)
+      .duration(450)
+      .attr("x2", 300)
+      .style('opacity', 1);
+
+  // draw funnel with no height values
+    svg.selectAll('rect')
+      .data(data.funnel)
+      .enter()
+        .append('svg:rect')
+        .attr({
+          'id' : function(d,i){
+                  return barArr[i];
+                 },
+          'class' : barClass,
+          'x' : barX,
+          'y' : '0',
+          'height' : '100',
+          'width' : barW
+        })
+        .style({
+          'fill' : funnelColor,
+          'stroke' : 'white',
+          'stroke-width' : '2px',
+          'opacity' : 0.3
+        })
+        .transition()
+        .attr({
+          'clip-path' : 'url('+clipper+')',
+          'y' : function(d,i){
+                  return i * 100;
+                }
+        });
+
+  //Transition in height values and find the largest group
+    svg.selectAll('.' + barClass)
+      .data(data.funnel)
+        .on('mouseover', function(){
+          origColor = d3.select(this).style("fill");
+          d3.select(this).style("fill", niOrange);
+          showInfo(d3.select(this).attr('id'));
+        })
+        .on('mouseout', function(){
+           d3.select(this).style("fill", origColor);
+           $('#infoBox').children().css('display', 'none');
+        })
+      .transition()
+      .duration(300)
+      .delay(300)
+        .attr({
+        'height' : function(d,i){
+          return yScale(d.count);
+        },
+        'y': function(d,i){
+          return newCountSum[i];
+         }
+      })
+      .style({
+        'fill' : function(d,i){
+                  return funnelColor.darker((i / 1.5));
+                },
+        'stroke' : 'white',
+        'stroke-width' : '2px',
+        'opacity' : 1
       });
 
+  //Percentage labels
+    svg.selectAll('text')
+    .data(data.funnel)
+    .enter()
+      .append('svg:text')
+      .style({
+        'opacity' : 0,
+        'fill' : function(d,i){
+          return funnelColor.darker((i / 1.5));
+        }
+      })
+      .transition()
+      .delay(330)
+      .duration(500)
+      .attr({
+        'x' : function(d,i){
+          return 20;
+        },
+        'y' : function(d,i){
+          return Math.round(newCountSum[i]);
+        },
+        "dx" : 0,
+        "dy" : "1.5em",
+        "text-anchor" : "middle",
+        "class" : "percentLabels"
+      })
+      .text(function(d,i){ return Math.round(yScale(data.funnel[i].count) / 5) + '%'; })
+      .style('opacity', 1);
+    
+var infoBox = d3.select('#infoBox');
 
-/*
-      svg.selectAll('.infoCopy')
-        .data(data.funnel)
-        .enter()
-        .append('svg:text')
-        .style('font-size', '0.9em')
-        .style('width', '200px')
+    infoBox.selectAll('div')
+      .data(data.funnel)
+      .enter()
+        .append('div')
         .attr({
-          'class' : 'infoCopy',
-          'x' : function(d,i){return 525;},
-          'y' : function(d,i){return 40;},
-          "text-anchor" : "left"
+           'class' : function(d,i){
+                  return barArr[i] + ' infoDiv';
+                 }
         })
-        .text(function(d,i){ return d.info.copy; });
-
-    var startDate = new Date(2012, 7, 8),
-    endDate = new Date(2013, 8, 8);
-
-    $("#slider").dateRangeSlider({
-      bounds:{
-        min: startDate,
-        max: endDate
-      },
-      defaultValues:{
-        min: startDate,
-        max: endDate
-      }
+      
+        .html(function(d,i){
+          return '<h4>'+d.info.title+' -'+Math.round(yScale(data.funnel[i].count) / 5) + '%'+'</h4><h5>Post Count: '+d.count+'</h5><p>'+d.info.copy+'</p>';
+        });
     });
 
-*/
-
-//Highlight the largest group
-    function pointIt(el) {
-       svg.select(el)
-        .transition()
-        .delay(1000)
-        .style({
-          'opacity' : 1
-        });
-    }
-  });
 
 };
 
-drawFunnel('data_1');
-
-
 var dataSources = ['data_1','data_2','data_3','data_4'],
   counter = 1;
-$('button').on('click', function(){
+
+$('.changeData').on('click', function(){
   if(counter > 3 ) {
     counter = 0;
   }
-  $('#purchaseFunnel').empty();
+  $('#purchaseFunnel, #infoBox').empty();
   drawFunnel(dataSources[counter]);
   counter++;
 });
 
- 
+drawFunnel('data_1');
+
+
