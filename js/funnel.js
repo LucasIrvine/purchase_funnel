@@ -37,10 +37,10 @@ var drawFunnel = function(jsonFile){
 //Grab JSON
   d3.json('data/'+ jsonFile +'.json', function(data){
 
-  function showInfo(id){
-    $('.'+id).fadeIn(200);
-    console.log($('.'+id));
-  }
+    function showInfo(id){
+      $('.'+id).fadeIn(200);
+      console.log($('.'+id));
+    }
 
 
 //Find largest section
@@ -49,6 +49,7 @@ var drawFunnel = function(jsonFile){
       arraySum += data.funnel[i].count;
     }
     var largestSection = Math.max.apply(null, maxArray);
+  
   //Scale
     var yScale = d3.scale.linear()
       .domain([0, arraySum])
@@ -58,6 +59,7 @@ var drawFunnel = function(jsonFile){
       var scaled = countSummer += yScale(data.funnel[r].count);
       newCountSum.push(scaled);
     }
+  
   //Label lines
     svg.selectAll('line')
     .data(data.funnel)
@@ -78,7 +80,7 @@ var drawFunnel = function(jsonFile){
       .attr("x2", 300)
       .style('opacity', 1);
 
-  // draw funnel with no height values
+  //Draw funnel with no height values
     svg.selectAll('rect')
       .data(data.funnel)
       .enter()
@@ -179,9 +181,11 @@ var infoBox = d3.select('#infoBox');
                   return barArr[i] + ' infoDiv';
                  }
         })
-      
+        .style('padding-top', function(d,i){
+          return (newCountSum[i] - 20) + 'px';
+        })
         .html(function(d,i){
-          return '<h4>'+d.info.title+' -'+Math.round(yScale(data.funnel[i].count) / 5) + '%'+'</h4><h5>Post Count: '+d.count+'</h5><p>'+d.info.copy+'</p>';
+          return '<h4>'+d.info.title+' - '+Math.round(yScale(data.funnel[i].count) / 5) + '%'+'</h4><h5>Post Count - '+d.count+'</h5><p>'+d.info.copy+'</p>';
         });
     });
 
