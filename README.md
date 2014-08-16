@@ -1,4 +1,6 @@
-purchase_funnel
+D3.js Purchase Funnel
 ===============
 
-svg purchase funnel
+Simple D3.js purchase funnel type visualization with random data generator.
+
+<a href="http://lucasirvine.com/purchase_funnel/index.html" target="_blank">Demo Page</a>
